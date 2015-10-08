@@ -1,0 +1,32 @@
+{
+    "perl"        : "v6.0.0",
+    "name"        : "Grammar::HTTP",
+    "version"     : "*",
+    "owner"       : "ugexe",
+    "auth"        : "github:ugexe",
+    "authors"     : ["ugexe"],
+    "description" : "HTTP request, response, and message body parsing grammar",
+    "provides"    : {
+        "Grammar::HTTP" : "lib/Grammar/HTTP.pm6",
+        "Grammar::HTTP::Actions"    : "lib/Grammar/HTTP/Actions.pm6",
+        "Grammar::HTTP::Extensions" : "lib/Grammar/HTTP/Extensions.pm6",
+        "Grammar::HTTP::RFC1035"    : "lib/Grammar/HTTP/RFC1035.pm6",
+        "Grammar::HTTP::RFC3066"    : "lib/Grammar/HTTP/RFC3066.pm6",
+        "Grammar::HTTP::RFC4647"    : "lib/Grammar/HTTP/RFC4647.pm6",
+        "Grammar::HTTP::RFC5322"    : "lib/Grammar/HTTP/RFC5322.pm6",
+        "Grammar::HTTP::RFC5646"    : "lib/Grammar/HTTP/RFC5646.pm6",
+        "Grammar::HTTP::RFC6265"    : "lib/Grammar/HTTP/RFC6265.pm6",
+        "Grammar::HTTP::RFC6854"    : "lib/Grammar/HTTP/RFC6854.pm6",
+        "Grammar::HTTP::RFC7230"    : "lib/Grammar/HTTP/RFC7230.pm6",
+        "Grammar::HTTP::RFC7231"    : "lib/Grammar/HTTP/RFC7231.pm6",
+        "Grammar::HTTP::RFC7232"    : "lib/Grammar/HTTP/RFC7232.pm6",
+        "Grammar::HTTP::RFC7233"    : "lib/Grammar/HTTP/RFC7233.pm6",
+        "Grammar::HTTP::RFC7234"    : "lib/Grammar/HTTP/RFC7234.pm6",
+        "Grammar::HTTP::RFC7235"    : "lib/Grammar/HTTP/RFC7235.pm6",
+        "Grammar::URI::RFC3986"     : "lib/Grammar/URI/RFC3986.pm6",
+        "Grammar::URI::RFC4234"     : "lib/Grammar/URI/RFC4234.pm6"
+    },
+    "depends"     : [ ],
+    "support"     : { "bugtracker" : "https://github.com/ugexe/Perl6-Grammar--HTTP/issues" },
+    "source-url"  : "git://github.com/ugexe/Perl6-Grammar--HTTP.git"
+}

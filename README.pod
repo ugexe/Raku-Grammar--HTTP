@@ -1,0 +1,122 @@
+=pod
+
+=encoding utf8
+
+=head3 Grammar::HTTP
+
+Grammars for parsing HTTP headers, message bodies, and URIs
+
+=for HTML <a href="https://travis-ci.org/ugexe/Perl6-Grammar--HTTP"><img src="https://travis-ci.org/ugexe/Perl6-Grammar--HTTP.svg?branch=master"></a>
+
+=head3 Synopsis
+
+    use Grammar::HTTP;
+
+    my $request = "GET / HTTP/1.1\r\nHost: www.perl6.org\r\n\r\n";
+    my $match   = Grammar::Parse($request);
+    say $match;
+
+    # ｢GET / HTTP/1.1
+    # Host: www.perl6.org
+    #
+    #｣
+    # HTTP-message => ｢GET / HTTP/1.1
+    # Host: www.perl6.org
+    #
+    #｣
+    #  start-line => ｢GET / HTTP/1.1
+    #｣
+    #   request-line => ｢GET / HTTP/1.1
+    #｣
+    #    method => ｢GET｣
+    #    request-target => ｢/｣
+    #    HTTP-version => ｢HTTP/1.1｣
+    #     HTTP-name => ｢HTTP｣
+    #     major => ｢1｣
+    #     minor => ｢1｣
+    #  header-field => ｢Host: www.perl6.org｣
+    #   name => ｢Host｣
+    #   value => ｢www.perl6.org｣
+    #    host => ｢www.perl6.org｣
+    #  message-body => ｢｣
+
+
+=head3 Rules
+
+    token HTTP-start
+    token HTTP-headers
+    token HTTP-header
+    token HTTP-body
+    token HTTP-message
+
+Parsing individual parts of the HTTP message can also be done by using a different rule. The default 
+C<Grammar::HTTP.parse($str)> is really the same as C<Grammar::HTTP.parse($str, :rule('HTTP-message')>. 
+So to parse just the start line you could do:
+    
+    my $string = "GET /http.html HTTP/1.1\r\n"; 
+    say Grammar::HTTP.new.parse($string, :rule<HTTP-start>)'
+
+    # ｢GET /http.html HTTP/1.1
+    # ｣
+    #  start-line => ｢GET /http.html HTTP/1.1
+    # ｣
+    #   request-line => ｢GET /http.html HTTP/1.1
+    # ｣
+    #    method => ｢GET｣
+    #    request-target => ｢/http.html｣
+    #    HTTP-version => ｢HTTP/1.1｣
+    #    HTTP-name => ｢HTTP｣
+    #    major => ｢1｣
+    #    minor => ｢1｣
+
+=head3 Actions
+
+L<Grammar::HTTP::Actions> can be used to generate a structured hash from a HTTP response message
+
+    use Grammar::HTTP::Actions;
+    use Grammar::HTTP;
+
+    my $response = "HTTP/1.1 200 OK\r\n"
+        ~ "Allow: GET, HEAD, PUT\r\n"
+        ~ "Content-Type: text/html; charset=utf-8\r\n"
+        ~ "Transfer-Encoding: chunked, gzip\r\n\r\n";
+
+    my $parsed = Grammar::HTTP.parse($response, :actions(Grammar::HTTP::Actions.new));
+    my %header = $parsed.<HTTP-message>.<header-field>>>.made;
+    dd %header;
+
+    # Hash %header = {
+    #    :Allow($("GET", "HEAD", "PUT")),
+    #    :Content-Type($[
+    #        :type("text"),
+    #        :subtype("html"),
+    #        :parameters([ :charset("utf-8") ])
+    #    ]),
+    #    :Transfer-Encoding($("chunked", "gzip"))}
+
+
+=head3 RFCs
+
+L<RFC3066|http://tools.ietf.org/html/rfc3066> Tags for the Identification of Languages
+
+L<RFC4234|http://tools.ietf.org/html/rfc4234> Augmented BNF for Syntax Specifications: ABNF
+
+L<RFC4647|http://tools.ietf.org/html/rfc4647> Matching of Language Tags
+
+L<RFC5322|http://tools.ietf.org/html/rfc5322> Internet Message Format
+
+L<RFC5646|http://tools.ietf.org/html/rfc5646> Tags for Identifying Languages
+
+L<RFC7230|http://tools.ietf.org/html/rfc7230> Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing
+
+L<RFC7231|http://tools.ietf.org/html/rfc7231> Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content
+
+L<RFC7232|http://tools.ietf.org/html/rfc7232> Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests
+
+L<RFC7233|http://tools.ietf.org/html/rfc7233> Hypertext Transfer Protocol (HTTP/1.1): Range Requests
+
+L<RFC7234|http://tools.ietf.org/html/rfc7234> Hypertext Transfer Protocol (HTTP/1.1): Caching
+
+L<RFC7235|http://tools.ietf.org/html/rfc7235> Hypertext Transfer Protocol (HTTP/1.1): Authentication
+
+=cut

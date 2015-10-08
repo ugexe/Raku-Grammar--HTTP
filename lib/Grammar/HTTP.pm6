@@ -1,0 +1,46 @@
+use Grammar::HTTP::Extensions;
+use Grammar::HTTP::RFC1035;
+use Grammar::HTTP::RFC3066;
+use Grammar::HTTP::RFC4647;
+use Grammar::HTTP::RFC5322;
+use Grammar::HTTP::RFC5646;
+use Grammar::HTTP::RFC6265;
+use Grammar::HTTP::RFC6854;
+use Grammar::HTTP::RFC7230;
+use Grammar::HTTP::RFC7231;
+use Grammar::HTTP::RFC7232;
+use Grammar::HTTP::RFC7233;
+use Grammar::HTTP::RFC7234;
+use Grammar::HTTP::RFC7235;
+use Grammar::URI::RFC3986;
+use Grammar::URI::RFC4234;
+
+# Mix in all the various RFCs into a usable grammar
+grammar Grammar::HTTP {
+    also does Grammar::HTTP::Extensions;
+    also does Grammar::HTTP::RFC1035;
+    also does Grammar::HTTP::RFC3066;
+    also does Grammar::HTTP::RFC4647;
+    also does Grammar::HTTP::RFC5322;
+    also does Grammar::HTTP::RFC5646;
+    also does Grammar::HTTP::RFC6265;
+    also does Grammar::HTTP::RFC6854;
+    also does Grammar::HTTP::RFC7230;
+    also does Grammar::HTTP::RFC7231;
+    also does Grammar::HTTP::RFC7232;
+    also does Grammar::HTTP::RFC7233;
+    also does Grammar::HTTP::RFC7234;
+    also does Grammar::HTTP::RFC7235;
+    also does Grammar::URI::RFC3986;
+    also does Grammar::URI::RFC4234;
+
+    token TOP          { <HTTP-message> }
+
+    token HTTP-start   { <start-line>   }
+    token HTTP-headers { <start-line> [<header-field> <.CRLF>]* }
+    token HTTP-header  { <header-field> }
+    token HTTP-body    { <message-body> }
+    token HTTP-message { <start-line> [<header-field> <.CRLF>]* <.CRLF> <message-body>? }
+
+    # token HTTP-trailer { <HTTP-trailer> }
+}

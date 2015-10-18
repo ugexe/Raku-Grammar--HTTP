@@ -6,14 +6,10 @@ role Grammar::HTTP::Extensions {
     # Header extensions
     # These are known headers that are not defined  in an RFC
     # (or in an RFC not implemented in these grammars yet)
-    # The default field-value from RFC7230 does not detect
-    # when to use the various parameter separation rules without
-    # explicitly telling it, so explicitly tell it we shall.
     token known-header:sym<Alternate-Protocol> { [:i <.sym>] }
     token known-header:sym<Keep-Alive>         { [:i <.sym>] }
     token known-header:sym<P3P>                { [:i <.sym>] }
     token known-header:sym<Strict-Transport-Security> {[:i <.sym>] }
-    token known-header:sym<X-Powered-By>       { [:i <.sym>] }
     token known-header:sym<X-Robots-Tag>       { [:i <.sym>] }
     token known-header:sym<X-UA-Compatible>    { [:i <.sym>] }
     token known-header:sym<X-XSS-Protection>   { [:i <.sym>] }
@@ -26,11 +22,6 @@ role Grammar::HTTP::Extensions {
     token Keep-Alive         { [<directive>]?  [";" [<.OWS> <directive> ]?]*          }
     token P3P                { [<directive>]?  [";" [<.OWS> <directive> ]?]*          }
     token Strict-Transport-Security { [<directive>]?  [";" [<.OWS> <directive> ]?]*   }
-
-    # field-value should handle this, but doesn't. A fix for field-value should be
-    # used ideally and then this can be removed
-    token X-Powered-By       { <+token +space -CRLF>+                           }
-
 
     token X-Robots-Tag       { (<.token>) *%% ','                               }
     token X-XSS-Protection   { [<directive>]?  [";" [<.OWS> <directive> ]?]*    }

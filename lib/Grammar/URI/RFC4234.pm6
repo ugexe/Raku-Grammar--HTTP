@@ -3,7 +3,7 @@ role Grammar::URI::RFC4234 {
     token BIT    { 0 || 1                                   }
     token CHAR   { <[\x[01]..\x[7F]]>                       }
     token CR     { \x[0D]                                   }
-    token CRLF   { [<.CR> <.LF>]                            }
+    token CRLF   { \x[0D] \x[0A]                            }
     token CTL    { <[\x[00]..\x[1F]]> || \x[7F]             }
     token DIGIT  { <[\x[30]..\x[39]]>                       }
     token DQUOTE { \x[22]                                   }

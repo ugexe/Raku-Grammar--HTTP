@@ -121,7 +121,7 @@ role Grammar::HTTP::RFC7230 {
 
     token rank              { [0 ['.' \d\d?\d?]?] || [1 ['.' 0?0?]?]                   }
     token reason-phrase     { [<.HTAB> || <.SP> || <.VCHAR> || <.obs-text>]*           } 
-    token received-by       { [<.host> [':' <.port>]?] || <.pseudonym>             }
+    token received-by       { [<.host> [':' <.port>]?] || <.pseudonym>                 }
     token received-protocol { [<.protocol-name> '/']? <.protocol-version>              }
     token request-line      { <method> ' ' <request-target> ' ' <HTTP-version> <.CRLF> }
     token request-target    { <.origin-form> || <.absolute-form> || <.authority-form> || <.asterisk-form> }

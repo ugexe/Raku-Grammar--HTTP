@@ -6,7 +6,7 @@ subtest {
     use-ok('Grammar::URI::RFC3986'),
         '3986: Uniform Resource Identifier (URI): Generic Syntax';
 
-    use-ok('Grammar::URI::RFC4234'),
+    use-ok('Grammar::IETF::ABNF::RFC4234'),
         '4234: Augmented BNF for Syntax Specifications: ABNF';
 }, 'URI RFC Grammars';
 

@@ -1,4 +1,4 @@
-role Grammar::URI::RFC4234 {
+role Grammar::IETF::ABNF::RFC4234 {
     token ALPHA  { <[\x[41]..\x[5A]]> || <[\x[61]..\x[7A]]> }
     token BIT    { 0 || 1                                   }
     token CHAR   { <[\x[01]..\x[7F]]>                       }

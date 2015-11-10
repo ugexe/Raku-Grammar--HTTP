@@ -32,7 +32,7 @@ grammar Grammar::HTTP {
     also does Grammar::HTTP::RFC7234;
     also does Grammar::HTTP::RFC7235;
     also does Grammar::URI::RFC3986;
-    also does Grammar::IETF::ABNF::RFC4234;
+    also does Grammar::IETF::ABNF::RFC4234_Core;
 
     token TOP          { <HTTP-message> }
 

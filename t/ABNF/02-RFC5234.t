@@ -10,7 +10,7 @@ my Grammar $grammar = Grammar::IETF::ABNF::RFC4234.new();
 
 subtest {
     is_match("\r\n", 'rulelist', $grammar);
-    my $match = is_match("rule = foo\r\n", 'rulelist', $grammar);
+    is_match("rule = foo\r\n", 'rulelist', $grammar);
     is_match("     \r\n", 'rulelist', $grammar);
     not_match(" foo = bar\r\n", 'rulelist', $grammar);
 }, 'rulelist';
@@ -18,7 +18,6 @@ subtest {
 subtest {
     my $match = is_match('rulelist  =  1*( rule / (*c-wsp c-nl) )'~"\r\n", 'rule', $grammar);
 }, 'rule';
-die;
 
 subtest {
     is_match(' ', 'c-wsp', $grammar);

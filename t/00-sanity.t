@@ -1,15 +1,24 @@
 use v6;
 use Test;
-plan 3;
+plan 4;
 
 subtest {
-    use-ok('Grammar::URI::RFC3986'),
+    plan 1;
+
+    use-ok('Grammar::IETF::URI::RFC3986'),
         '3986: Uniform Resource Identifier (URI): Generic Syntax';
+}, 'URI RFC Grammars';
+
+subtest {
+    plan 3;
 
     use-ok('Grammar::IETF::ABNF::RFC4234'),
         '4234: Augmented BNF for Syntax Specifications: ABNF';
-}, 'URI RFC Grammars';
-
+    use-ok('Grammar::IETF::ABNF::RFC5234'),
+        '5234: Augmented BNF for Syntax Specifications: ABNF';
+    use-ok('Grammar::IETF::ABNF::RFC7405'),
+        '7405: Augmented BNF for Syntax Specifications: ABNF';
+}, 'ABNF Grammars';
 
 subtest {
     use-ok('Grammar::HTTP::RFC1035'),

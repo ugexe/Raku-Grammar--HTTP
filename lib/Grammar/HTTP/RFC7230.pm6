@@ -1,4 +1,5 @@
 # HTTP/1.1 Message Syntax and Routing
+use Grammar::IETF::URI::RFC3986;
 
 role Grammar::HTTP::RFC7230 {
     token OWS   { [<.SP> || <.HTAB>]* }
@@ -11,7 +12,7 @@ role Grammar::HTTP::RFC7230 {
     token Content-Length    { <.digit>+ }
     token HTTP-version      { <HTTP-name> '/' $<major>=[\d] '.' $<minor>=[\d] }
     token HTTP-name         { 'HTTP' }
-    token Host              { <host> [':' <.port>]? } # `host` from 3986
+    token Host              { <Grammar::IETF::URI::RFC3986::host> [':' <.port> ]? }
     token TE                { [[<.OWS> <t-codings>]*]       *%% ','                           }
     token Trailer           { [[<.OWS> <field-name>]*]      *%% ','                           }
 
@@ -22,7 +23,7 @@ role Grammar::HTTP::RFC7230 {
     token Via { [[<received-protocol> <.RWS> <received-by> [<.RWS> <comment>]?]*] *%% ','     }
 
     token absolute-form  { <.absolute-URI>   }
-    token absolute-path  { ['/' <.segment>]+ }
+    token absolute-path  { ['/' <.Grammar::IETF::URI::RFC3986::segment>]+ }
     token asterisk-form  { '*'               }
     token authority-form { <.authority>      }
 

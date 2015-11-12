@@ -1,5 +1,6 @@
 use v6;
 use Test;
+use lib <t/lib>;
 use TestLocal::Grammar;
 
 plan 16;

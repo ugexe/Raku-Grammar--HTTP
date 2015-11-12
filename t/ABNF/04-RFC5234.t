@@ -9,6 +9,8 @@ use Grammar::IETF::ABNF::RFC5234;
 my Grammar $grammar = Grammar::IETF::ABNF::RFC5234.new();
 
 subtest {
+    plan 7;
+
     is_match("\r\n", 'rulelist', $grammar);
     is_match("rule = foo\r\n", 'rulelist', $grammar);
     is_match("     \r\n", 'rulelist', $grammar);
@@ -16,32 +18,44 @@ subtest {
 }, 'rulelist';
 
 subtest {
-    my $match = is_match('rulelist  =  1*( rule / (*c-wsp c-nl) )'~"\r\n", 'rule', $grammar);
+    plan 2;
+
+    is_match('rulelist  =  1*( rule / (*c-wsp c-nl) )'~"\r\n", 'rule', $grammar);
 }, 'rule';
 
 subtest {
+    plan 6;
+
     is_match(' ', 'c-wsp', $grammar);
     is_match("\r\n ", 'c-wsp', $grammar);
     is_match("; A comment here \r\n ", 'c-wsp', $grammar);
 }, 'c-wsp';
 
 subtest {
+    plan 4;
+
     is_match("; a comment\r\n", 'c-nl', $grammar);
     is_match("\r\n", 'c-nl', $grammar);
 }, 'c-nl';
 
 subtest {
+    plan 3;
+
     is_match("; This is a comment \r\n", 'comment', $grammar);
     not_match("; Single line comment", 'comment', $grammar);
 }, 'comment';
 
 subtest {
+    plan 6;
+
     is_match('foo', 'alternation', $grammar);
     is_match('bar / foo', 'alternation', $grammar);
     is_match("bar\r\n ; comment\r\n /foo", 'alternation', $grammar);
 }, 'alternation';
 
 subtest {
+    plan 8;
+
     is_match('2*foo', 'concatenation', $grammar);
     is_match('foo foo       *1bar', 'concatenation', $grammar);
     is_match("foo bar \r\n *1bar", 'concatenation', $grammar);
@@ -49,16 +63,22 @@ subtest {
 }, 'concatenation';
 
 subtest {
+    plan 4;
+
     is_match('2*2foo', 'repetition', $grammar);
     is_match('1*( foo  foo )', 'repetition', $grammar);
 }, 'repetition';
 
 subtest {
+    plan 4;
+
     is_match('foo / bar', 'elements', $grammar);
     is_match('foo ', 'elements', $grammar);
 }, 'elements';
 
 subtest {
+    plan 10;
+
     is_match('a', 'rulename', $grammar);
     is_match('S', 'rulename', $grammar);
     is_match('a1-sd', 'rulename', $grammar);
@@ -69,6 +89,8 @@ subtest {
 }, 'rulename';
 
 subtest {
+    plan 10;
+
     is_match(" = ", 'defined-as', $grammar);
     is_match(" =/ ", 'defined-as', $grammar);
     is_match('=', 'defined-as', $grammar);
@@ -77,6 +99,8 @@ subtest {
 }, 'defined-as';
 
 subtest {
+    plan 18;
+
     is_match('*', 'repeat', $grammar);
     is_match('1*', 'repeat', $grammar);
     is_match('*1', 'repeat', $grammar);
@@ -89,16 +113,19 @@ subtest {
 }, 'repeat';
 
 subtest {
+    plan 12;
+
     is_match('rulename', 'element', $grammar);
     is_match('( group )', 'element', $grammar);
     is_match('[ option ]', 'element', $grammar);
     is_match('" char "', 'element', $grammar);
     is_match('%d23-24', 'element', $grammar);
     is_match('< prose 101 >', 'element', $grammar);
-
 }, 'element';
 
 subtest {
+    plan 7;
+
     is_match('( foo / *bar )', 'group', $grammar);
     is_match('(groups (all (the (way (down)))))', 'group', $grammar);
     is_match('(group *(many groups))', 'group', $grammar);
@@ -106,6 +133,8 @@ subtest {
 }, 'group';
 
 subtest {
+    plan 7;
+
     is_match('[ foo / *bar ]', 'option', $grammar);
     is_match('[options [all [the [way [down]]]]]', 'option', $grammar);
     is_match('[option *[many options]]', 'option', $grammar);
@@ -113,6 +142,8 @@ subtest {
 }, 'option';
 
 subtest {
+    plan 192;
+
     for flat ("\x[20]".."\x[21]", "\x[23]".."\x7E") -> $char {
         is_match('"'~$char~'"', 'char-val', $grammar);
     }
@@ -120,10 +151,11 @@ subtest {
 
     not_match('"not " quotes" allowed "', 'char-val', $grammar);
     not_match('not "unquoted strings" allowed', 'char-val', $grammar);
-
 }, 'char-val';
 
 subtest {
+    plan 8;
+
     is_match('%b01', 'num-val', $grammar);
     is_match('%d12', 'num-val', $grammar);
     is_match('%x2F', 'num-val', $grammar);
@@ -133,6 +165,8 @@ subtest {
 }, 'num-val';
 
 subtest {
+    plan 14;
+
     is_match('b1', 'bin-val', $grammar);
     is_match('b10101101', 'bin-val', $grammar);
 
@@ -147,6 +181,8 @@ subtest {
 }, 'bin-val';
 
 subtest {
+    plan 14;
+
     is_match('d1', 'dec-val', $grammar);
     is_match('d12123123', 'dec-val', $grammar);
 
@@ -161,6 +197,8 @@ subtest {
 }, 'dec-val';
 
 subtest {
+    plan 14;
+
     is_match('xF', 'hex-val', $grammar);
     is_match('xFF', 'hex-val', $grammar);
 
@@ -175,6 +213,7 @@ subtest {
 }, 'hex-val';
 
 subtest {
+    plan 191;
     for "\x[20]".."\x[3D]" -> $string {
         is_match( '<'~$string~'>', 'prose-val' , $grammar);
     }
@@ -183,12 +222,15 @@ subtest {
         is_match('<'~$string~'>', 'prose-val', $grammar);
     }
 
+
     is_match('<'~'this is a test {vchars} and [sp] without angles!'~'>', 'prose-val', $grammar);
 
     not_match('(no angles)', 'prose-val', $grammar);
 }, 'prose-val';
 
 subtest {
+    plan 2;
+
     my $text = "t/ABNF/rfc5234_grammar.txt".IO.slurp;
 
     # File is \n but the grammar spec is \r\n;

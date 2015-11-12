@@ -4,7 +4,10 @@
     "version"     : "*",
     "owner"       : "ugexe",
     "auth"        : "github:ugexe",
-    "authors"     : ["ugexe"],
+    "authors"     : [
+        "Nick Logan",
+        "Mike Francis"
+    ],
     "description" : "HTTP request, response, and message body parsing grammar",
     "provides"    : {
         "Grammar::HTTP" : "lib/Grammar/HTTP.pm6",
@@ -24,7 +27,9 @@
         "Grammar::HTTP::RFC7234"    : "lib/Grammar/HTTP/RFC7234.pm6",
         "Grammar::HTTP::RFC7235"    : "lib/Grammar/HTTP/RFC7235.pm6",
         "Grammar::URI::RFC3986"     : "lib/Grammar/URI/RFC3986.pm6",
-        "Grammar::URI::RFC4234"     : "lib/Grammar/URI/RFC4234.pm6"
+        "Grammar::IETF::ABNF::RFC4234" : "lib/Grammar/IETF/ABNF/RFC4234.pm6",
+        "Grammar::IETF::ABNF::RFC5234" : "lib/Grammar/IETF/ABNF/RFC5234.pm6",
+        "Grammar::IETF::ABNF::RFC7405" : "lib/Grammar/IETF/ABNF/RFC7405.pm6"
     },
     "depends"     : [ ],
     "support"     : { "bugtracker" : "https://github.com/ugexe/Perl6-Grammar--HTTP/issues" },

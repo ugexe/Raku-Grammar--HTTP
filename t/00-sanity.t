@@ -1,6 +1,6 @@
 use v6;
 use Test;
-plan 4;
+plan 5;
 
 subtest {
     plan 1;
@@ -21,8 +21,13 @@ subtest {
 }, 'ABNF Grammars';
 
 subtest {
-    use-ok('Grammar::HTTP::RFC1035'),
+    plan 1;
+
+    use-ok('Grammar::IETF::DNS::RFC1035'),
         '1035: Domain Names - Implementatin and Specification';
+}, 'DNS Grammars';
+
+subtest {
 
     use-ok('Grammar::HTTP::RFC3066'),
         '3066: Tags for Identification of Languages';

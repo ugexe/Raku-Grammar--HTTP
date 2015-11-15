@@ -12,7 +12,7 @@ role Grammar::HTTP::RFC7230 {
     token Content-Length    { <.digit>+ }
     token HTTP-version      { <HTTP-name> '/' $<major>=[\d] '.' $<minor>=[\d] }
     token HTTP-name         { 'HTTP' }
-    token Host              { <Grammar::IETF::URI::RFC3986::host> [':' <.port> ]? }
+    token Host              { $<host>=<Grammar::IETF::URI::RFC3986::host> [':' <.port> ]? }
     token TE                { [[<.OWS> <t-codings>]*]       *%% ','                           }
     token Trailer           { [[<.OWS> <field-name>]*]      *%% ','                           }
 

@@ -44,7 +44,7 @@ role Grammar::HTTP::RFC6265 {
     token httponly-av       { [:i 'HttpOnly' ]                    }
     token path-av           { [:i 'Path='    ] <path-value>       }
     token sane-cookie-date  { <rfc1123-date>                      }
-    token domain-value      { <Grammar::IETF::DNS::RFC1035::subdomain> }
+    token domain-value      { $<subdomain>=<Grammar::IETF::DNS::RFC1035::subdomain> }
     token path-value        { <+CHAR -CTL -[;]>                   }
     token extension-av      { <+CHAR -CTL -[;]>                   }
 

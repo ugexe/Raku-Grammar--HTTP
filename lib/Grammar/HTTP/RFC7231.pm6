@@ -33,7 +33,7 @@ role Grammar::HTTP::RFC7231  {
     token GMT           { [:!i GMT]      }
     token HTTP-date     { <IMF-fixdate> || <obs-date> }
     token IMF-fixdate   { <day-name> ',' <.SP> <date1> <.SP> <time-of-day> <.SP> <GMT> }
-    token Location      { <Grammar::IETF::URI::RFC3986::URI-reference> }
+    token Location      { $<URI-reference>=<Grammar::IETF::URI::RFC3986::URI-reference> }
     token Max-Forwards  { <digit> }
     token Referer       { <absolute-URI> || <partial-URI> }
     token Retry-After   { <HTTP-date> || <delay-seconds>  }

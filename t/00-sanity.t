@@ -1,6 +1,6 @@
 use v6;
 use Test;
-plan 5;
+plan 6;
 
 subtest {
     plan 1;
@@ -28,10 +28,13 @@ subtest {
 }, 'DNS Grammars';
 
 subtest {
+    plan 1;
 
-    use-ok('Grammar::HTTP::RFC3066'),
+    use-ok('Grammar::IETF::IOL::RFC3066'),
         '3066: Tags for Identification of Languages';
+}, 'Identification of Language (IOL) Grammars';
 
+subtest {
     use-ok('Grammar::HTTP::RFC4647'),
         '4647: Matching of Language Tags';
 

@@ -1,5 +1,4 @@
 use Grammar::HTTP::Extensions;
-use Grammar::HTTP::RFC4647;
 use Grammar::HTTP::RFC5322;
 use Grammar::HTTP::RFC5646;
 use Grammar::HTTP::RFC6265;
@@ -15,7 +14,6 @@ use Grammar::IETF::ABNF::RFC5234;
 # Mix in all the various RFCs into a usable grammar
 grammar Grammar::HTTP {
     also does Grammar::HTTP::Extensions;
-    also does Grammar::HTTP::RFC4647;
     also does Grammar::HTTP::RFC5322;
     also does Grammar::HTTP::RFC5646;
     also does Grammar::HTTP::RFC6265;

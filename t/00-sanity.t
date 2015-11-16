@@ -28,16 +28,16 @@ subtest {
 }, 'DNS Grammars';
 
 subtest {
-    plan 1;
+    plan 2;
 
     use-ok('Grammar::IETF::IOL::RFC3066'),
         '3066: Tags for Identification of Languages';
+
+    use-ok('Grammar::IETF::IOL::RFC4647'),
+        '4647: Matching of Language Tags';
 }, 'Identification of Language (IOL) Grammars';
 
 subtest {
-    use-ok('Grammar::HTTP::RFC4647'),
-        '4647: Matching of Language Tags';
-
     use-ok('Grammar::HTTP::RFC5322'),
         '5322: Internet Message Format';
 

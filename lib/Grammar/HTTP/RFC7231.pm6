@@ -1,5 +1,6 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content
 use Grammar::IETF::URI::RFC3986;
+use Grammar::IETF::IOL::RFC4647;
 
 role Grammar::HTTP::RFC7231  {
     # note: tokens with `-value` postfix were added to help resolve 
@@ -14,7 +15,9 @@ role Grammar::HTTP::RFC7231  {
     token accept-encoding-value { [<.OWS> [<codings> <weight>?]] }
 
     token Accept-Language  { <accept-language-value> +%% ','            }
-    token accept-language-value { [<.OWS> [<language-range> <weight>?]] }
+    token accept-language-value {
+        [ <.OWS> [ $<language-range>=<Grammar::IETF::IOL::RFC4647::language-range> <weight>? ] ]
+    }
 
     token Allow            { <allow-value> +%% ',' }
     token allow-value      { [<.OWS> <method>]     }

@@ -92,7 +92,7 @@ role Grammar::HTTP::RFC5322 {
 
     token local-part { <.dot-atom> || <.quoted-string> || <.obs-local-part> }
 
-    my token domain { <.dot-atom> || <.domain-literal> || <.obs-domain> }
+    token domain { <.dot-atom> || <.domain-literal> || <.obs-domain> }
 
     token domain-literal { <.CFWS>? '[' [<.FWS>? <.dtext>]* <.FWS>? ']' <.CFWS>? }
 

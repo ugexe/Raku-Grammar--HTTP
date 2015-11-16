@@ -1,4 +1,5 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content
+use Grammar::IETF::URI::RFC3986;
 
 role Grammar::HTTP::RFC7231  {
     # note: tokens with `-value` postfix were added to help resolve 
@@ -32,7 +33,7 @@ role Grammar::HTTP::RFC7231  {
     token GMT           { [:!i GMT]      }
     token HTTP-date     { <IMF-fixdate> || <obs-date> }
     token IMF-fixdate   { <day-name> ',' <.SP> <date1> <.SP> <time-of-day> <.SP> <GMT> }
-    token Location      { <URI-reference> }
+    token Location      { $<URI-reference>=<Grammar::IETF::URI::RFC3986::URI-reference> }
     token Max-Forwards  { <digit> }
     token Referer       { <absolute-URI> || <partial-URI> }
     token Retry-After   { <HTTP-date> || <delay-seconds>  }

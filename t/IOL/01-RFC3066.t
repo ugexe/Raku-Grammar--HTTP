@@ -1,0 +1,41 @@
+use v6;
+use Test;
+use lib <t/lib>;
+use TestLocal::Grammar;
+
+use Grammar::IETF::IOL::RFC3066;
+
+my Grammar $grammar = Grammar::IETF::IOL::RFC3066.new();
+
+plan 3;
+
+subtest {
+    plan 8;
+
+    is_match('en', 'language-tag', $grammar);
+    is_match('en-gb', 'language-tag', $grammar);
+    is_match('en-gb-cockney1', 'language-tag', $grammar);
+
+    not_match('thishastomanyletters', 'language-tag', $grammar);
+    not_match('-gb', 'language-tag', $grammar);
+}, 'language-tag';
+
+subtest {
+    plan 6;
+
+    is_match('fr', 'primary-subtag', $grammar);
+    is_match('g', 'primary-subtag', $grammar);
+
+    not_match('fr1', 'primary-subtag', $grammar);
+    not_match('tomanyletters', 'primary-subtag', $grammar);
+}, 'primary-subtag';
+
+subtest {
+    plan 6;
+
+    is_match('ch', 'subtag', $grammar);
+    is_match('123', 'subtag', $grammar);
+
+    not_match('1234567890', 'subtag', $grammar);
+    not_match('tomanynumbersorletters', 'subtag', $grammar);
+}, 'subtag';

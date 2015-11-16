@@ -1,6 +1,4 @@
 use Grammar::HTTP::Extensions;
-use Grammar::HTTP::RFC1035;
-use Grammar::HTTP::RFC3066;
 use Grammar::HTTP::RFC4647;
 use Grammar::HTTP::RFC5322;
 use Grammar::HTTP::RFC5646;
@@ -12,14 +10,11 @@ use Grammar::HTTP::RFC7232;
 use Grammar::HTTP::RFC7233;
 use Grammar::HTTP::RFC7234;
 use Grammar::HTTP::RFC7235;
-use Grammar::URI::RFC3986;
 use Grammar::IETF::ABNF::RFC5234;
 
 # Mix in all the various RFCs into a usable grammar
 grammar Grammar::HTTP {
     also does Grammar::HTTP::Extensions;
-    also does Grammar::HTTP::RFC1035;
-    also does Grammar::HTTP::RFC3066;
     also does Grammar::HTTP::RFC4647;
     also does Grammar::HTTP::RFC5322;
     also does Grammar::HTTP::RFC5646;
@@ -31,7 +26,6 @@ grammar Grammar::HTTP {
     also does Grammar::HTTP::RFC7233;
     also does Grammar::HTTP::RFC7234;
     also does Grammar::HTTP::RFC7235;
-    also does Grammar::URI::RFC3986;
     also does Grammar::IETF::ABNF::RFC5234_Core;
 
     token TOP          { <HTTP-message> }

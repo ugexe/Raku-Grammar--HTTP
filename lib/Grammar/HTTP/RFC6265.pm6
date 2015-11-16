@@ -1,7 +1,7 @@
 # HTTP State Management Mechanism
 
 use Grammar::HTTP::RFC5322;
-use Grammar::HTTP::RFC1035;
+use Grammar::IETF::DNS::RFC1035;
 
 role Grammar::HTTP::RFC6265 {
     my token obs-fold { <.CRLF>               }
@@ -44,7 +44,7 @@ role Grammar::HTTP::RFC6265 {
     token httponly-av       { [:i 'HttpOnly' ]                    }
     token path-av           { [:i 'Path='    ] <path-value>       }
     token sane-cookie-date  { <rfc1123-date>                      }
-    token domain-value      { <subdomain>                         }
+    token domain-value      { $<subdomain>=<Grammar::IETF::DNS::RFC1035::subdomain> }
     token path-value        { <+CHAR -CTL -[;]>                   }
     token extension-av      { <+CHAR -CTL -[;]>                   }
 

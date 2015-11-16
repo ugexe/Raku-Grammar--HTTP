@@ -1,26 +1,27 @@
 # Uniform Resource Identifier (URI): Generic Syntax
 # +Representing IPv6 Zone Identifiers in Address Literals and Uniform Resource Identifiers
 
-role Grammar::URI::RFC3986 {
+use Grammar::IETF::ABNF::RFC5234;
+grammar Grammar::IETF::URI::RFC3986 does Grammar::IETF::ABNF::RFC5234_Core {
     token URI-reference { <URI> || <relative-ref>                                   }
     token URI           { <scheme> ':' <heir-part> ['?' <query>]? ['#' <fragment>]? }
     token absolute-URI  { <scheme> : <heir-part> ['?' <query>]?                     }
     token relative-ref  { <relative-part> ['?' <query>]? ['#' <fragment>]?          }
-    token heir-part     { 
-        || '//' <authority> <path-abempty> 
-        || <path-absolute> 
-        || <path-noscheme> 
-        || <path-empty> 
+    token heir-part     {
+        || '//' <authority> <path-abempty>
+        || <path-absolute>
+        || <path-noscheme>
+        || <path-empty>
     }
-    token relative-part { 
-        || '//' <authority> <path-abempty> 
-        || <path-absolute> 
-        || <path-noscheme> 
-        || <path-empty> 
+    token relative-part {
+        || '//' <authority> <path-abempty>
+        || <path-absolute>
+        || <path-noscheme>
+        || <path-empty>
     }
 
-    token scheme { 
-        <.ALPHA> 
+    token scheme {
+        <.ALPHA>
         [
         || <.ALPHA>
         || <.DIGIT>
@@ -61,7 +62,7 @@ role Grammar::URI::RFC3986 {
     token reg-name { [<.unreserved> || <.pct-encoded> || <.sub-delims>]* }
     token port     { <.DIGIT>* }
 
-    token path     { 
+    token path     {
         || <.path-abempty>
         || <.path-absolute>
         || <.path-noscheme>

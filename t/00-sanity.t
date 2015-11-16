@@ -1,23 +1,40 @@
 use v6;
 use Test;
-plan 3;
+plan 6;
 
 subtest {
-    use-ok('Grammar::URI::RFC3986'),
+    plan 1;
+
+    use-ok('Grammar::IETF::URI::RFC3986'),
         '3986: Uniform Resource Identifier (URI): Generic Syntax';
+}, 'URI RFC Grammars';
+
+subtest {
+    plan 3;
 
     use-ok('Grammar::IETF::ABNF::RFC4234'),
         '4234: Augmented BNF for Syntax Specifications: ABNF';
-}, 'URI RFC Grammars';
-
+    use-ok('Grammar::IETF::ABNF::RFC5234'),
+        '5234: Augmented BNF for Syntax Specifications: ABNF';
+    use-ok('Grammar::IETF::ABNF::RFC7405'),
+        '7405: Augmented BNF for Syntax Specifications: ABNF';
+}, 'ABNF Grammars';
 
 subtest {
-    use-ok('Grammar::HTTP::RFC1035'),
+    plan 1;
+
+    use-ok('Grammar::IETF::DNS::RFC1035'),
         '1035: Domain Names - Implementatin and Specification';
+}, 'DNS Grammars';
 
-    use-ok('Grammar::HTTP::RFC3066'),
+subtest {
+    plan 1;
+
+    use-ok('Grammar::IETF::IOL::RFC3066'),
         '3066: Tags for Identification of Languages';
+}, 'Identification of Language (IOL) Grammars';
 
+subtest {
     use-ok('Grammar::HTTP::RFC4647'),
         '4647: Matching of Language Tags';
 

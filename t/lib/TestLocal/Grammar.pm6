@@ -1,4 +1,5 @@
 unit module TestLocal::Grammar;
+no precompilation;
 
 use Test;
 

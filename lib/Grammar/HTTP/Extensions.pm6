@@ -1,3 +1,5 @@
+no precompilation;
+
 role Grammar::HTTP::Extensions {
     token directive                 { <directive-name> [ "=" <directive-value> ]? }
     token directive-name            { <.token>                                    }

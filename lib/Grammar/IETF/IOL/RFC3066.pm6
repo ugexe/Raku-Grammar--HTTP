@@ -1,4 +1,5 @@
 # Tags for Identification of Languages
+no precompilation;
 
 use Grammar::IETF::ABNF::RFC5234;
 grammar Grammar::IETF::IOL::RFC3066 does Grammar::IETF::ABNF::RFC5234_Core {

@@ -1,6 +1,9 @@
+no precompilation;
+
 use v6;
 use Test;
 plan 6;
+
 
 subtest {
     plan 1;

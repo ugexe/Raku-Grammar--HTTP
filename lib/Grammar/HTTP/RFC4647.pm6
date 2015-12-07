@@ -1,4 +1,5 @@
 # Matching of Language Tags
+no precompilation;
 
 use Grammar::IETF::IOL::RFC3066;
 role Grammar::HTTP::RFC4647 {

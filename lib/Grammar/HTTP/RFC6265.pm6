@@ -1,4 +1,5 @@
 # HTTP State Management Mechanism
+no precompilation;
 
 use Grammar::HTTP::RFC5322;
 use Grammar::IETF::DNS::RFC1035;

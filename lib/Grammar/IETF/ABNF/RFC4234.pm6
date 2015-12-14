@@ -1,3 +1,5 @@
+no precompilation;
+
 role Grammar::IETF::ABNF::RFC4234_Core is Grammar {
     token ALPHA  { <[ \x[41]..\x[5A] ]> || <[ \x[61]..\x[7A] ]> }
     token BIT    { 0 || 1                                       }

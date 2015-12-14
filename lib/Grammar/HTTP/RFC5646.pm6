@@ -1,4 +1,5 @@
 # Tags for Identifying Languages
+no precompilation;
 
 role Grammar::HTTP::RFC5646 {
     token langtag { 

@@ -1,3 +1,5 @@
+no precompilation;
+
 use Grammar::IETF::ABNF::RFC5234;
 
 grammar Grammar::IETF::ABNF::RFC7405 is Grammar::IETF::ABNF::RFC5234 {

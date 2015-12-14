@@ -1,4 +1,5 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Range Requests
+no precompilation;
 
 role Grammar::HTTP::RFC7233 {
     token Accept-Ranges { [<acceptable-ranges> + %% ','] || 'none' }

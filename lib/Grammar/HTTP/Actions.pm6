@@ -1,3 +1,5 @@
+no precompilation;
+
 role Grammar::HTTP::Actions::Header::Allow {
     method Allow($/) {
         make $/<allow-value>.map(*.made).cache;

@@ -1,4 +1,6 @@
 # HTTP/1.1 Message Syntax and Routing
+no precompilation;
+
 use Grammar::IETF::URI::RFC3986;
 
 role Grammar::HTTP::RFC7230 {

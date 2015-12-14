@@ -1,4 +1,6 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content
+no precompilation;
+
 use Grammar::IETF::URI::RFC3986;
 use Grammar::IETF::IOL::RFC4647;
 

@@ -1,3 +1,5 @@
+no precompilation;
+
 use Grammar::HTTP::Extensions;
 use Grammar::HTTP::RFC5322;
 use Grammar::HTTP::RFC5646;

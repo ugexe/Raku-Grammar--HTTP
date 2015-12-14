@@ -1,9 +1,10 @@
+no precompilation;
+
 use v6;
 use Test;
 plan 4;
 
 use Grammar::HTTP;
-
 
 subtest {
     my $request =  q{GET /http.html HTTP/1.1}

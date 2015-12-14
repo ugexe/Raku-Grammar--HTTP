@@ -1,4 +1,5 @@
 # DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION
+no precompilation;
 
 grammar Grammar::IETF::DNS::RFC1035 {
     token letter      { <[a..zA..Z]>                              }

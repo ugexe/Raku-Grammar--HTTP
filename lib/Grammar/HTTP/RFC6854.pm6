@@ -1,4 +1,5 @@
 # Update to Internet Message Format to Allow Group Syntax in the "From:" and "Sender:" Header Fields
+no precompilation;
 
 role Grammar::HTTP::RFC6854 {
     my token from     { "From:" [<mailbox-list> || <address-list>] <.CRLF> }

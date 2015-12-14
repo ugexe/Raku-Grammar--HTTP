@@ -1,4 +1,5 @@
 # Matching of Language Tags
+no precompilation;
 
 use Grammar::IETF::ABNF::RFC5234;
 

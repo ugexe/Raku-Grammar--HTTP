@@ -1,4 +1,5 @@
 # Internet Message Format
+no precompilation;
 
 role Grammar::HTTP::RFC5322 {
 

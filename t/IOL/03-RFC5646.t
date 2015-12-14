@@ -1,0 +1,183 @@
+use v6;
+use Test;
+use lib <t/lib>;
+use TestLocal::Grammar;
+
+plan 14;
+
+use Grammar::IETF::IOL::RFC5646;
+
+my Grammar $grammar = Grammar::IETF::IOL::RFC5646.new();
+
+subtest {
+    plan 6;
+
+    is_match('ABc-DeF-GhI-JKL-MNOP-QR-STWXYZ-1234-5-67890-x-VALID', 'Language-Tag', $grammar);
+    is_match('en-gb-oed', 'Language-Tag', $grammar);
+    is_match("no-bok", 'regular', $grammar);
+}, 'langauge-tag';
+
+subtest {
+    plan 15;
+
+    is_match('ABc', 'langtag', $grammar);
+    is_match('ABc-DEFG', 'langtag', $grammar);
+    is_match('AbC-123', 'langtag', $grammar);
+    is_match('Abc-ghjjsdy-2876', 'langtag', $grammar);
+    is_match('AbC-i-klingon', 'langtag', $grammar);
+    is_match('ABC-x-foobar', 'langtag', $grammar);
+    is_match('ABc-DeF-GhI-JKL-MNOP-QR-STWXYZ-1234-5-67890-x-VALID', 'langtag', $grammar);
+
+    not_match('en-gb-oed', 'langtag', $grammar);
+}, 'langtag';
+
+subtest {
+    plan 15;
+
+    is_match('ABC', 'language', $grammar);
+    is_match('aB', 'language', $grammar);
+    is_match('ABC-DEF-GHI', 'language', $grammar);
+    is_match('ABcd', 'language', $grammar);
+    is_match('ABCDEFGH', 'language', $grammar);
+
+    not_match('ABCDEFGHI', 'language', $grammar);
+    not_match('ABCD-EFG', 'language', $grammar);
+    not_match('ABCDE-FGH', 'language', $grammar);
+    not_match('A', 'language', $grammar);
+    not_match(1234, 'language', $grammar);
+}, 'langauge';
+
+subtest {
+    plan 12;
+
+    is_match('FRE', 'extlang', $grammar);
+    is_match('FRE-NCH', 'extlang', $grammar);
+    is_match('AME-RIC-ANS', 'extlang', $grammar);
+
+    not_match('123', 'extlang', $grammar);
+    not_match('ABC-124', 'extlang', $grammar);
+    not_match('AB', 'extlang', $grammar);
+    not_match('ABC-AB', 'extlang', $grammar);
+    not_match('ABC-', 'extlang', $grammar);
+    not_match('ABC-DEF-GHI-JKL', 'extlang', $grammar);
+}, 'extlang';
+
+subtest {
+    plan 5;
+
+    is_match('COPT', 'script', $grammar);
+
+    not_match('1234', 'script', $grammar);
+    not_match('GB', 'script', $grammar);
+    not_match('ABCDE', 'script', $grammar);
+}, 'script';
+
+subtest {
+    plan 7;
+
+    is_match('GB', 'region', $grammar);
+    is_match('123', 'region', $grammar);
+
+    not_match('12', 'region', $grammar);
+    not_match('GBR', 'region', $grammar);
+    not_match('F', 'region', $grammar);
+}, 'region';
+
+subtest {
+    plan 6;
+
+    is_match('juhgf8', 'variant', $grammar);
+    is_match('1hdgr', 'variant', $grammar);
+
+    not_match('abcd', 'variant', $grammar);
+    not_match('1234567890', 'variant', $grammar);
+}, 'variant';
+
+subtest {
+    plan 8;
+
+    is_match('i-tests', 'extension', $grammar);
+    is_match('i-tests-12345', 'extension', $grammar);
+
+    not_match('i-1234567890', 'extension', $grammar);
+    not_match('i-', 'extension', $grammar);
+    not_match('x-tests', 'extension', $grammar);
+    not_match('i', 'extension', $grammar);
+}, 'extension';
+
+subtest {
+    plan 4;
+
+    is_match('h', 'singleton', $grammar);
+
+    not_match('x', 'singleton', $grammar);
+    not_match('X', 'singleton', $grammar);
+}, 'singleton';
+
+subtest {
+    plan 7;
+
+    is_match('x-silmaril', 'privateuse', $grammar);
+    is_match('x-elven-mirkwood', 'privateuse', $grammar);
+
+    not_match('x', 'privateuse', $grammar);
+    not_match('x-', 'privateuse', $grammar);
+    not_match('x-elven-lothlorien', 'privateuse', $grammar);
+}, 'privateuse';
+
+subtest {
+    plan 4;
+
+    is_match('cel-gaulish', 'grandfathered', $grammar);
+    is_match('i-tsu', 'grandfathered', $grammar);
+}, 'grandfathered';
+
+subtest {
+    plan 35;
+
+    is_match("en-gb-oed", 'irregular', $grammar);
+    is_match("i-ami", 'irregular', $grammar);
+    is_match("i-bnn", 'irregular', $grammar);
+    is_match("i-default", 'irregular', $grammar);
+    is_match("i-enochian", 'irregular', $grammar);
+    is_match("i-hak", 'irregular', $grammar);
+    is_match("i-klingon", 'irregular', $grammar);
+    is_match("i-lux", 'irregular', $grammar);
+    is_match("i-mingo", 'irregular', $grammar);
+    is_match("i-navajo", 'irregular', $grammar);
+    is_match("i-pwn", 'irregular', $grammar);
+    is_match("i-tao", 'irregular', $grammar);
+    is_match("i-tay", 'irregular', $grammar);
+    is_match("i-tsu", 'irregular', $grammar);
+    is_match("sgn-BE-FR", 'irregular', $grammar);
+    is_match("sgn-BE-NL", 'irregular', $grammar);
+    is_match("sgn-CH-DE", 'irregular', $grammar);
+
+    not_match('fr-ch', 'irregular', $grammar);
+}, 'irregular';
+
+subtest {
+    plan 19;
+
+    is_match("art-lojban", 'regular', $grammar);
+    is_match("cel-gaulish", 'regular', $grammar);
+    is_match("no-bok", 'regular', $grammar);
+    is_match("no-nyn", 'regular', $grammar);
+    is_match("zh-guoyu", 'regular', $grammar);
+    is_match("zh-hakka", 'regular', $grammar);
+    is_match("zh-min", 'regular', $grammar);
+    is_match("zh-min-nan", 'regular', $grammar);
+    is_match("zh-xiang", 'regular', $grammar);
+
+    not_match('en-gb', 'regular', $grammar);
+}, 'regular';
+
+subtest {
+    plan 6;
+
+    is_match('7', 'alphanum', $grammar);
+    is_match('B', 'alphanum', $grammar);
+
+    not_match('BB', 'alphanum', $grammar);
+    not_match('7A', 'alphanum', $grammar);
+}, 'alphanum';

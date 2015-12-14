@@ -31,21 +31,21 @@ subtest {
 }, 'DNS Grammars';
 
 subtest {
-    plan 2;
+    plan 3;
 
     use-ok('Grammar::IETF::IOL::RFC3066'),
         '3066: Tags for Identification of Languages';
 
     use-ok('Grammar::IETF::IOL::RFC4647'),
         '4647: Matching of Language Tags';
+
+    use-ok('Grammar::IETF::IOL::RFC5646'),
+        '5646: Tags for Identifying Languages';
 }, 'Identification of Language (IOL) Grammars';
 
 subtest {
     use-ok('Grammar::HTTP::RFC5322'),
         '5322: Internet Message Format';
-
-    use-ok('Grammar::HTTP::RFC5646'),
-        '5646: Tags for Identifying Languages';
 
     use-ok('Grammar::HTTP::RFC6265'),
         '6265: HTTP State Management Mechanism';

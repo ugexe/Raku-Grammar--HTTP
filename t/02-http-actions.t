@@ -28,7 +28,6 @@ subtest {
         :range( [:type<image>, :subtype<jpeg>             ] ), 
         :range( [:type<image>, :subtype<pjpeg>            ] ),
     ];
-    say %header;
     is %header<Accept-Language>, [
         [:tag<da>                 ],
         [:tag<en-gb>, :weight<0.8>],

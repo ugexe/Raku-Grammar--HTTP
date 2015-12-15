@@ -29,11 +29,7 @@ role Grammar::HTTP::Actions::Header::Accept-Language {
     }
 
     method language-range($/) {
-        make $/<language-tag>.made;
-    }
-
-    method language-tag($/) {
-        make $/.Str;
+        make $/<language-tag>.Str;
     }
 
     my method weight($/) {

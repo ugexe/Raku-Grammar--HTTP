@@ -1,0 +1,64 @@
+use v6;
+use Test;
+use lib <t/lib>;
+use TestLocal::Grammar;
+
+use Grammar::IETF::IOL::RFC4647;
+
+my Grammar $grammar = Grammar::IETF::IOL::RFC4647.new();
+
+plan 3;
+
+subtest {
+    plan 10;
+
+    is_match('en', 'language-range', $grammar);
+    is_match('en-gb-cockney1', 'language-range', $grammar);
+    is_match('*', 'language-range', $grammar);
+
+    not_match('thishastomanyletters', 'language-range', $grammar);
+    not_match('-gb', 'language-range', $grammar);
+    not_match('en-*', 'language-range', $grammar);
+
+    subtest {
+        plan 7;
+
+        my $match = is_match('en-gb-cn', 'language-range', $grammar);
+        is $match<language-tag>, 'en-gb-cn', ' -> With language-tag capture';
+        is $match<language-tag><primary-subtag>, 'en', ' -> With correct primary-tag';
+        ok $match<language-tag><subtag> ~~ Array, ' -> List of subtags';
+        is $match<language-tag><subtag>[0], 'gb', ' -> With correct first subtag';
+        is $match<language-tag><subtag>[1], 'cn', ' -> With correct first subtag';
+    }, 'captures';
+}, 'language-range';
+
+subtest {
+    plan 13;
+
+    is_match('en', 'extended-language-range', $grammar);
+    is_match('en-gb-cockney1', 'extended-language-range', $grammar);
+    is_match('*', 'extended-language-range', $grammar);
+    is_match('en-*', 'extended-language-range', $grammar);
+    is_match('*-gb', 'extended-language-range', $grammar);
+
+    not_match('thishastomanyletters', 'extended-language-range', $grammar);
+    not_match('-gb', 'extended-language-range', $grammar);
+
+    subtest {
+        plan 7;
+
+        my $match = is_match('en-*-cn', 'extended-language-range', $grammar);
+        is $match<language-tag>, 'en-*-cn', ' -> With language-tag capture';
+        is $match<language-tag><primary-subtag>, 'en', ' -> With correct primary-tag';
+        ok $match<language-tag><subtag> ~~ Array, ' -> List of subtags';
+        is $match<language-tag><subtag>[0], '*', ' -> With correct first subtag';
+        is $match<language-tag><subtag>[1], 'cn', ' -> With correct first subtag';
+    }, 'captures';
+}, 'extended-language-range';
+
+subtest {
+    plan 4;
+
+    is_match('a', 'alphanum', $grammar);
+    is_match(7, 'alphanum', $grammar);
+}, 'alphanum';

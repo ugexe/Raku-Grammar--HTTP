@@ -1,6 +1,5 @@
 # Uniform Resource Identifier (URI): Generic Syntax
 # +Representing IPv6 Zone Identifiers in Address Literals and Uniform Resource Identifiers
-no precompilation;
 
 use Grammar::IETF::ABNF::RFC5234;
 grammar Grammar::IETF::URI::RFC3986 does Grammar::IETF::ABNF::RFC5234_Core {

@@ -1,5 +1,4 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Authentication
-no precompilation;
 
 role Grammar::HTTP::RFC7235 {
     token Authorization       { <.credentials> }

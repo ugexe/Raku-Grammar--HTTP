@@ -1,5 +1,4 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Caching
-no precompilation;
 
 role Grammar::HTTP::RFC7234 {
     token Age           { <.delta-seconds> }

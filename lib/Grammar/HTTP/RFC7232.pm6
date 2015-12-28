@@ -1,5 +1,4 @@
 # Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests
-no precompilation;
 
 role Grammar::HTTP::RFC7232 {
     token ETag { <.entity-tag> }

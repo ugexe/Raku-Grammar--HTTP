@@ -1,6 +1,4 @@
 # Matching of Language Tags
-no precompilation;
-
 use Grammar::IETF::ABNF::RFC5234;
 
 grammar Grammar::IETF::IOL::RFC4647 does Grammar::IETF::ABNF::RFC5234_Core {

@@ -1,5 +1,5 @@
 {
-    "perl"        : "v6.0.0",
+    "perl"        : "6",
     "name"        : "Grammar::HTTP",
     "version"     : "*",
     "owner"       : "ugexe",

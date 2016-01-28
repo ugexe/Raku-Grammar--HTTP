@@ -7,6 +7,7 @@
 Grammars for parsing HTTP headers, message bodies, and URIs
 
 =for HTML <a href="https://travis-ci.org/ugexe/Perl6-Grammar--HTTP"><img src="https://travis-ci.org/ugexe/Perl6-Grammar--HTTP.svg?branch=master"></a>
+          <a href="https://ci.appveyor.com/project/ugexe/Perl6-Grammar--HTTP/branch/master"><img src="https://ci.appveyor.com/api/projects/status/github/ugexe/Perl6-Grammar--HTTP?branch=master&passingText=Windows%20-%20OK&failingText=Windows%20-%20FAIL&pendingText=Windows%20-%20pending&svg=true"></a>
 
 =head3 Synopsis
 

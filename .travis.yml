@@ -1,6 +1,7 @@
 language: perl
-perl:
-    - '5.20'
+os:
+    - linux
+    - osx
 env:
     - BACKEND=moar
     - BACKEND=jvm
@@ -10,10 +11,10 @@ matrix:
     fast_finish: true
 sudo: false
 before_install:
+    - 'if [[ $BACKEND == "moar" ]]; then export VM_OPTS="--gen-moar"; fi'
     - git clone https://github.com/rakudo/rakudo.git $HOME/rakudo
     - cd $HOME/rakudo
-    - 'if [[ $BACKEND == "moar" ]]; then perl Configure.pl --gen-moar --gen-nqp --backends=$BACKEND; fi'
-    - 'if [[ $BACKEND == "jvm" ]]; then perl Configure.pl --gen-nqp --backends=$BACKEND; fi'
+    - perl Configure.pl $VM_OPTS --gen-nqp --backends=$BACKEND
     - make install
     - export PATH=$HOME/rakudo/install/bin:$PATH
     - cd $TRAVIS_BUILD_DIR
@@ -21,4 +22,4 @@ install:
     # need at least 1 statement in 'install'
     - perl6 -v
 script:
-    - prove -v -r -e 'perl6 -Ilib' t/
+    - prove -v -r -e "perl6 -Ilib" t/

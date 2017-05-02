@@ -1,13 +1,13 @@
 {
     "perl"        : "6",
     "name"        : "Grammar::HTTP",
-    "version"     : "*",
-    "owner"       : "ugexe",
+    "version"     : "0.0.1",
     "auth"        : "github:ugexe",
     "authors"     : [
         "Nick Logan",
         "Mike Francis"
     ],
+    "license"     : "Artistic-2.0",
     "description" : "HTTP request, response, and message body parsing grammar",
     "provides"    : {
         "Grammar::HTTP" : "lib/Grammar/HTTP.pm6",

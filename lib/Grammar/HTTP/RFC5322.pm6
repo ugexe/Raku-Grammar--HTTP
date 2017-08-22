@@ -119,10 +119,10 @@ role Grammar::HTTP::RFC5322 {
         ]*
         [
         || <orig-date>
-        || <from>
+        || <sent-from>
         || <sender>
         || <reply-to>
-        || <to>
+        || <sent-to>
         || <cc>
         || <bcc>
         || <message-id>
@@ -137,13 +137,13 @@ role Grammar::HTTP::RFC5322 {
 
     token orig-date { "Date:" <date-time> <.CRLF> }
 
-    token from { "From:" <mailbox-list> <.CRLF> }
+    token sent-from { "From:" <mailbox-list> <.CRLF> }
 
     token sender { "Sender:" <mailbox> <.CRLF> }
 
     token reply-to { "Reply-To:" <address-list> <.CRLF> }
 
-    token to { "To:" <address-list> <.CRLF> }
+    token sent-to { "To:" <address-list> <.CRLF> }
 
     token cc { "Cc:" <address-list> <.CRLF> }
 
@@ -269,10 +269,10 @@ role Grammar::HTTP::RFC5322 {
         || <obs-return>
         || <obs-received>
         || <obs-orig-date>
-        || <obs-from>
+        || <obs-sent-from>
         || <obs-sender>
         || <obs-reply-to>
-        || <obs-to>
+        || <obs-sent-to>
         || <obs-cc>
         || <obs-bcc>
         || <obs-message-id>
@@ -295,13 +295,13 @@ role Grammar::HTTP::RFC5322 {
 
     token obs-orig-date { "Date" <.WSP>* ':' <.date-time> <.CRLF> }
 
-    token obs-from { "From" <.WSP>* ':' <.mailbox-list> <.CRLF> }
+    token obs-sent-from { "From" <.WSP>* ':' <.mailbox-list> <.CRLF> }
 
     token obs-sender { "Sender" <.WSP>* ':' <.mailbox> <.CRLF> }
 
     token obs-reply-to { "Reply-To" <.WSP>* ':' <.address-list> <.CRLF> }
 
-    token obs-to { "To" <.WSP>* ':' <.address-list> <.CRLF> }
+    token obs-sent-to { "To" <.WSP>* ':' <.address-list> <.CRLF> }
 
     token obs-cc { "Cc" <.WSP>* ':' <.address-list> <.CRLF> }
 

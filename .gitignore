@@ -1,0 +1,8 @@
+*.moarvm
+*.swp
+*.jar
+blib/
+tmp/
+lib/.precomp/
+.precomp/
+

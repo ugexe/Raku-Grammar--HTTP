@@ -1,6 +1,5 @@
-use v6;
-use Test;
-use lib <t/lib>;
+use Test:ver<6.c+>;
+use lib $*PROGRAM.parent(2).add('lib');
 use TestLocal::Grammar;
 
 use Grammar::IETF::IOL::RFC4647;

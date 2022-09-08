@@ -1,13 +1,12 @@
-use v6;
-use Test;
-use lib <t/lib>;
+use Test:ver<6.c+>;
+use lib $*PROGRAM.parent(2).add('lib');
 use TestLocal::Grammar;
 
 plan 16;
 
-use Grammar::IETF::ABNF::RFC5234;
+use Grammar::IETF::ABNF::RFC4234;
 
-my Grammar $grammar = grammar TestGrammar does Grammar::IETF::ABNF::RFC5234_Core {};
+my Grammar $grammar = grammar TestGrammar does Grammar::IETF::ABNF::RFC4234_Core {};
 
 subtest {
     plan 5;

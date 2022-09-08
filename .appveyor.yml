@@ -1,21 +1,32 @@
-os: Visual Studio 2015
+os: Visual Studio 2017
 
 platform: x64
 
 install:
-  - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
-  - choco install strawberryperl
-  - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
-  - git clone https://github.com/rakudo/rakudo.git %APPVEYOR_BUILD_FOLDER%\..\rakudo
-  - cd %APPVEYOR_BUILD_FOLDER%\..\rakudo
-  - perl Configure.pl --gen-moar --gen-nqp
-  - nmake install
-  - SET PATH=%APPVEYOR_BUILD_FOLDER%\..\rakudo\install\bin;%PATH%
-  - cd %APPVEYOR_BUILD_FOLDER%
+    # Enable x64 Native Tools
+    - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"'
+
+    # Workaround for path length errors during precompilation of longer repo names
+    - SET TMPDIR=C:\tmp
+    - cd C:\
+    - md tmp
+
+    # Install Perl
+    - appveyor-retry choco install strawberryperl --allow-empty-checksums
+    - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
+    - appveyor-retry git clone https://github.com/rakudo/rakudo.git %APPVEYOR_BUILD_FOLDER%\..\rakudo
+
+    # Install Rakudo
+    - cd %APPVEYOR_BUILD_FOLDER%\..\rakudo
+    - perl Configure.pl --gen-moar --gen-nqp --backends=moar
+    - nmake install
+    - SET PATH=%APPVEYOR_BUILD_FOLDER%\..\rakudo\install\bin;%PATH%
+    - SET PATH=%APPVEYOR_BUILD_FOLDER%\..\rakudo\install\share\perl6\site\bin;%PATH%
+    - cd %APPVEYOR_BUILD_FOLDER%
 
 build: off
 
 test_script:
-  - prove -v -r -e "perl6 -Ilib" t/
+    - prove --ext .rakutest -v -r -e "raku -I." t/
 
 shallow_clone: true

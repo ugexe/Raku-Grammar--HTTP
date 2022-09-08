@@ -1,6 +1,6 @@
 {
     "name"        : "Grammar::HTTP",
-    "version"     : "0.0.2",
+    "version"     : "0.1.0",
     "auth"        : "github:ugexe",
     "authors"     : [
         "Nick Logan",

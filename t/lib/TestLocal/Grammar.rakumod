@@ -1,6 +1,6 @@
 unit module TestLocal::Grammar;
 
-use Test;
+use Test:ver<6.c+>;
 
 sub is_match (Cool $string, Str $rule, Grammar $grammar) is export {
     my $match = $grammar.parse($string, :rule($rule));

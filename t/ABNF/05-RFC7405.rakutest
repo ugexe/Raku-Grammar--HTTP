@@ -1,6 +1,4 @@
-use v6;
-
-use Test;
+use Test:ver<6.c+>;
 use lib <t/lib>;
 use TestLocal::Grammar;
 

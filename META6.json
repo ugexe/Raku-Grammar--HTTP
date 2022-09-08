@@ -37,6 +37,7 @@
         "Grammar::IETF::URI::RFC3986"  : "lib/Grammar/IETF/URI/RFC3986.rakumod"
     },
     "depends" : [ ],
+    "test-depends" : [ "Test:ver<6.c+>" ],
     "support"      : {
         "bugtracker" : "https://github.com/ugexe/Raku-Grammar--HTTP/issues",
         "source"     : "https://github.com/ugexe/Raku-Grammar--HTTP.git"

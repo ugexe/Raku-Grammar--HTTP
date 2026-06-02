@@ -34,8 +34,8 @@ grammar Grammar::IETF::URI::RFC3986 does Grammar::IETF::ABNF::RFC5234_Core {
     token authority   { [<userinfo> '@']? <host> [':' <port>]? }
     token userinfo    { [<.unreserved> || <.pct-encoded> || <.sub-delims> || ':']*  }
     token host        { <.IP-literal> || <.IPv4address> || <.reg-name>              }
-    token IP-literal  { '[' [<.IPv6address> || <.IPv6addrz> || <.IPvFuture>] ']'    }
-    token IPv6addz    { <.IPv6address> '%25' <.ZoneID>    }
+    token IP-literal  { '[' [<.IPv6address> || <.IPv6addr> || <.IPvFuture>] ']'    }
+    token IPv6addr    { <.IPv6address> '%25' <.ZoneID>    }
     token ZoneID      { [<.unreserved> || <.pct-encoded>]+ }
     token IPvFuture   { 'v' <.HEXDIG>+ '.' [<.unreserved> || <.sub-delims> || ':']+ }
     token IPv6address {
@@ -51,7 +51,7 @@ grammar Grammar::IETF::URI::RFC3986 does Grammar::IETF::ABNF::RFC5234_Core {
     }
     token h16  { <.HEXDIG> ** 1..4 }
     token ls32 { [<.h16> ':' <.h16>] || <.IPv4address> }
-    token IPv4address { <.dec-octet> '.' <.dec-octet> '.' <.dec-octet> '.' <.decoctet> }
+    token IPv4address { <.dec-octet> '.' <.dec-octet> '.' <.dec-octet> '.' <.dec-octet> }
     token dec-octet {
         || <.DIGIT>
         || [\x[31]..\x[39]] <.DIGIT>

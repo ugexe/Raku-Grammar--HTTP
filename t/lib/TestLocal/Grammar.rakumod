@@ -6,7 +6,7 @@ sub is_match (Cool $string, Str $rule, Grammar $grammar) is export {
     my $match = $grammar.parse($string, :rule($rule));
 
     ok($match, "「{safe_print($string)}」 matched rule: $rule");
-    is($match.Str, $string, " - 『{safe_print($match.Str)}』returned for match of 「{safe_print($string.perl)}」");
+    is($match.Str, $string, " - 『{safe_print($match.Str)}』returned for match of 「{safe_print($string.raku)}」");
 
     return $match;
 }

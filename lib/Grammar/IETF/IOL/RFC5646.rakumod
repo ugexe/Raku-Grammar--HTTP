@@ -49,7 +49,7 @@ grammar Grammar::IETF::IOL::RFC5646 does Grammar::IETF::ABNF::RFC5234_Core {
 
     token grandfathered { [ <.irregular> | <.regular> ] >> }
 
-    token irregular { :i
+    token irregular { :i [
         | 'en-GB-oed'
         | 'i-ami'
         | 'i-bnn'
@@ -67,9 +67,9 @@ grammar Grammar::IETF::IOL::RFC5646 does Grammar::IETF::ABNF::RFC5234_Core {
         | 'sgn-BE-FR'
         | 'sgn-BE-NL'
         | 'sgn-CH-DE'
-    }
+    ] }
 
-    token regular { :i
+    token regular { :i [
         | 'art-lojban'
         | 'cel-gaulish'
         | 'no-bok'
@@ -79,7 +79,7 @@ grammar Grammar::IETF::IOL::RFC5646 does Grammar::IETF::ABNF::RFC5234_Core {
         | 'zh-min'
         | 'zh-min-nan'
         | 'zh-xiang'
-    }
+    ] }
 
     token alphanum { <.ALPHA> | <.DIGIT> }
 }
